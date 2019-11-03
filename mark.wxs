@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='windows-1252'?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Codepage="1252" Id="8B51B79A-D645-4C65-9FD9-857F08868CF6" Language="1033" Manufacturer="itforarchivists.com" Name="Mark" UpgradeCode="3C788DC7-C7FA-4782-A709-76B7D7EBCC7F" Version="1.0.0">
+		<Package Comments="Mark watermarks PDF files with a name and date." Compressed="yes" Description="Mark 1.0 Installer" Id="*" InstallerVersion="100" Keywords="Installer" Languages="1033" Manufacturer="itforarchivists.com" SummaryCodepage="1252"/>
+		<Media Cabinet="mark.cab" DiskPrompt="CD-ROM #1" EmbedCab="yes" Id="1"/>
+		<Property Id="DiskPrompt" Value="Mark 1.0 Installation [1]"/>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder" Name="PFiles">
+				<Directory Id="INSTALLDIR" Name="mark">
+					<Component Guid="C016992B-B305-461C-90E5-B6FE497E593A" Id="MainExecutable">
+						<File DiskId="1" Id="markEXE" KeyPath="yes" Name="mark.exe" Source="mark.exe"/>
+					</Component>
+					<ProgId Description="watermark pdf" Id="Mark.pdffile">
+						<Extension ContentType="application/pdf" Id="pdf">
+							<Verb Argument="-d &quot;%1&quot;" Command="Watermark" Id="mark" TargetFile="markEXE"/>
+						</Extension>
+					</ProgId>
+				</Directory>
+			</Directory>
+		</Directory>
+		<Directory Id="ProgramMenuFolder" Name="Programs">
+			<Directory Id="ProgramMenuDir" Name="Mark">
+				<Component Guid="753C7874-E09A-4979-A1A9-EB62E695BC79" Id="ProgramMenuDir">
+					<RemoveFolder Id="ProgramMenuDir" On="uninstall"/>
+					<RegistryValue Key="Software\[Manufacturer]\[ProductName]" KeyPath="yes" Root="HKCU" Type="string" Value=""/>
+				</Component>
+			</Directory>
+		</Directory>
+		<Directory Id="DesktopFolder" Name="Desktop"/>
+		<Feature Id="Complete" Level="1">
+			<ComponentRef Id="MainExecutable"/>
+			<ComponentRef Id="ProgramMenuDir"/>
+		</Feature>
+	</Product>
+</Wix>

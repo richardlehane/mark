@@ -48,6 +48,7 @@ L:
 		fmt.Sprintf("made available on %s", time.Now().Format("2006-01-02")),
 	}
 	// walk the target dir
+	var count int
 	err := filepath.Walk(target, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return fmt.Errorf("error walking %q: %v\n", path, err)
@@ -60,6 +61,7 @@ L:
 			if strings.HasSuffix(path, "_wm.pdf") {
 				return nil
 			}
+			count++
 			wm := pdfcpu.DefaultWatermarkConfig()
 			wm.Opacity = 0.5
 			wm.TextLines = text
@@ -79,5 +81,5 @@ L:
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	fmt.Println("success")
+	fmt.Printf("finished! %d pdf files watermarked\n", count)
 }
