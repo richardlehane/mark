@@ -9,16 +9,23 @@
 				<Directory Id="INSTALLDIR" Name="mark">
 					<Component Guid="C016992B-B305-461C-90E5-B6FE497E593A" Id="MainExecutable">
 						<File DiskId="1" Id="markEXE" KeyPath="yes" Name="mark.exe" Source="mark.exe"/>
-						<ProgId Description="watermark pdf" Id="Mark.pdffile">
-							<Extension ContentType="application/pdf" Id="pdf">
-								<Verb Argument="-d &quot;%1&quot;" Command="Watermark" Id="mark" TargetFile="markEXE"/>
-							</Extension>
-						</ProgId>
 						<RegistryKey Key="Directory\shell\watermark" Root="HKCR">
-								<RegistryValue Type="string" Value="Watermark PDFs"/>
-								<RegistryKey Key="command">
-									<RegistryValue Type="string" Value="&quot;[#markEXE]&quot; -d &quot;%1&quot;"/>
-								</RegistryKey>
+							<RegistryValue Type="string" Value="Watermark PDFs"/>
+							<RegistryKey Key="command">
+								<RegistryValue Type="string" Value="&quot;[#markEXE]&quot; -d &quot;%1&quot;"/>
+							</RegistryKey>
+						</RegistryKey>
+						<RegistryKey Key="Directory\Background\shell\watermark" Root="HKCR">
+							<RegistryValue Type="string" Value="Watermark PDFs"/>
+							<RegistryKey Key="command">
+								<RegistryValue Type="string" Value="&quot;[#markEXE]&quot; -d &quot;%v&quot;"/>
+							</RegistryKey>
+						</RegistryKey>
+						<RegistryKey Key="SOFTWARE\Classes\SystemFileAssociations\.pdf\shell\watermark" Root="HKLM">
+							<RegistryValue Type="string" Value="Watermark PDF"/>
+							<RegistryKey Key="command">
+								<RegistryValue Type="string" Value="&quot;[#markEXE]&quot; -d &quot;%1&quot;"/>
+							</RegistryKey>
 						</RegistryKey>
 					</Component>
 				</Directory>
