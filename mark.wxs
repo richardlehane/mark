@@ -9,24 +9,29 @@
 				<Directory Id="INSTALLDIR" Name="mark">
 					<Component Guid="C016992B-B305-461C-90E5-B6FE497E593A" Id="MainExecutable">
 						<File DiskId="1" Id="markEXE" KeyPath="yes" Name="mark.exe" Source="mark.exe"/>
+						<ProgId Description="watermark pdf" Id="Mark.pdffile">
+							<Extension ContentType="application/pdf" Id="pdf">
+								<Verb Argument="-d &quot;%1&quot;" Command="Watermark" Id="mark" TargetFile="markEXE"/>
+							</Extension>
+						</ProgId>
+						<RegistryKey Key="Directory\shell\watermark" Root="HKCR">
+								<RegistryValue Type="string" Value="Watermark PDFs"/>
+								<RegistryKey Key="command">
+									<RegistryValue Type="string" Value="&quot;[#markEXE]&quot; -d &quot;%1&quot;"/>
+								</RegistryKey>
+						</RegistryKey>
 					</Component>
-					<ProgId Description="watermark pdf" Id="Mark.pdffile">
-						<Extension ContentType="application/pdf" Id="pdf">
-							<Verb Argument="-d &quot;%1&quot;" Command="Watermark" Id="mark" TargetFile="markEXE"/>
-						</Extension>
-					</ProgId>
+				</Directory>
+			</Directory>
+			<Directory Id="ProgramMenuFolder" Name="Programs">
+				<Directory Id="ProgramMenuDir" Name="Mark">
+					<Component Guid="753C7874-E09A-4979-A1A9-EB62E695BC79" Id="ProgramMenuDir">
+						<RemoveFolder Id="ProgramMenuDir" On="uninstall"/>
+						<RegistryValue Key="Software\[Manufacturer]\[ProductName]" KeyPath="yes" Root="HKCU" Type="string" Value=""/>
+					</Component>
 				</Directory>
 			</Directory>
 		</Directory>
-		<Directory Id="ProgramMenuFolder" Name="Programs">
-			<Directory Id="ProgramMenuDir" Name="Mark">
-				<Component Guid="753C7874-E09A-4979-A1A9-EB62E695BC79" Id="ProgramMenuDir">
-					<RemoveFolder Id="ProgramMenuDir" On="uninstall"/>
-					<RegistryValue Key="Software\[Manufacturer]\[ProductName]" KeyPath="yes" Root="HKCU" Type="string" Value=""/>
-				</Component>
-			</Directory>
-		</Directory>
-		<Directory Id="DesktopFolder" Name="Desktop"/>
 		<Feature Id="Complete" Level="1">
 			<ComponentRef Id="MainExecutable"/>
 			<ComponentRef Id="ProgramMenuDir"/>
