@@ -1,4 +1,4 @@
-A script to watermark PDFs in a directory.
+A tool to watermark PDFs in a directory.
 
 Uses [github.com/pdfcpu/pdfcpu](https://github.com/pdfcpu/pdfcpu)
 
