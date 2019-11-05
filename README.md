@@ -4,12 +4,14 @@ Uses [github.com/pdfcpu/pdfcpu](https://github.com/pdfcpu/pdfcpu)
 
 ## Version
 
-1.0.0
+1.0.1
 
 ## Usage
 
     mark file.pdf
-    mark -d DIR // recursively scans DIR for PDFs. The -d flag causes it to overwrite the original files.
+    mark DIR // recursively scans DIR for PDFs 
+    mark -d file|DIR // the -d flag causes mark to overwrite the original files.
+    mark -s file|DIR // the -s flag prints a statistics file
 
 ## Install
 
