@@ -145,7 +145,7 @@ L:
 			fmt.Fprintf(sf,
 				"WATERMARK STATS\r\n---\r\nResearcher: %s\r\nDate: %s\r\nTotal files: %d\r\nTotal pages: %d\r\n---\r\nFiles:\r\n%s",
 				name,
-				text[1],
+				time.Now().Format("2006-01-02"),
 				count,
 				totalPages,
 				strings.Join(pdfnames, "\r\n"),
