@@ -109,7 +109,8 @@ L:
 			// now write to file
 			if err == nil {
 				nn := strings.TrimSuffix(path, ".pdf") + "_wm.pdf"
-				nf, err := os.Create(nn)
+				var nf *os.File
+				nf, err = os.Create(nn)
 				if err == nil {
 					err = api.WriteContext(ctx, nf)
 				}
@@ -142,15 +143,15 @@ L:
 		sf, err := os.Create(filepath.Join(statsdir, fmt.Sprintf("stats-%d.txt", time.Now().Unix())))
 		if err == nil {
 			fmt.Fprintf(sf,
-				"WATERMARK STATS\n---\nResearcher: %s\nDate: %s\nTotal files: %d\nTotal pages: %d\n---\nFiles:\n%s",
+				"WATERMARK STATS\r\n---\r\nResearcher: %s\r\nDate: %s\r\nTotal files: %d\r\nTotal pages: %d\r\n---\r\nFiles:\r\n%s",
 				name,
 				text[1],
 				count,
 				totalPages,
-				strings.Join(pdfnames, "\n"),
+				strings.Join(pdfnames, "\r\n"),
 			)
 			if len(errortxts) > 0 {
-				fmt.Fprintf(sf, "\n---\nErrors:\n%s", strings.Join(errortxts, "\n"))
+				fmt.Fprintf(sf, "\r\n---\r\nErrors:\r\n%s", strings.Join(errortxts, "\r\n"))
 			}
 		}
 		sf.Close()
