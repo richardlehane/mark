@@ -12,19 +12,19 @@
 						<RegistryKey Key="Directory\shell\watermark" Root="HKCR">
 							<RegistryValue Type="string" Value="Watermark PDFs"/>
 							<RegistryKey Key="command">
-								<RegistryValue Type="string" Value="&quot;[#markEXE]&quot; -d &quot;%1&quot;"/>
+								<RegistryValue Type="string" Value="&quot;[#markEXE]&quot; -d -s &quot;%1&quot;"/>
 							</RegistryKey>
 						</RegistryKey>
 						<RegistryKey Key="Directory\Background\shell\watermark" Root="HKCR">
 							<RegistryValue Type="string" Value="Watermark PDFs"/>
 							<RegistryKey Key="command">
-								<RegistryValue Type="string" Value="&quot;[#markEXE]&quot; -d &quot;%v&quot;"/>
+								<RegistryValue Type="string" Value="&quot;[#markEXE]&quot; -d -s &quot;%v&quot;"/>
 							</RegistryKey>
 						</RegistryKey>
 						<RegistryKey Key="SOFTWARE\Classes\SystemFileAssociations\.pdf\shell\watermark" Root="HKLM">
 							<RegistryValue Type="string" Value="Watermark PDF"/>
 							<RegistryKey Key="command">
-								<RegistryValue Type="string" Value="&quot;[#markEXE]&quot; -d &quot;%1&quot;"/>
+								<RegistryValue Type="string" Value="&quot;[#markEXE]&quot; -d -s &quot;%1&quot;"/>
 							</RegistryKey>
 						</RegistryKey>
 					</Component>

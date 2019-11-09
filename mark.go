@@ -68,7 +68,7 @@ L:
 			}
 			return nil
 		}
-		if filepath.Ext(path) == ".pdf" {
+		if strings.ToLower(filepath.Ext(path)) == ".pdf" {
 			// don't watermark files that are already watermarked
 			if strings.HasSuffix(path, "_wm.pdf") {
 				return nil
@@ -91,8 +91,9 @@ L:
 			if err == nil {
 				// make a new watermark
 				wm := pdfcpu.DefaultWatermarkConfig()
-				wm.Opacity = 0.5
+				wm.Opacity = 0.7
 				wm.TextLines = text
+				wm.OnTop = true
 				// select all pages
 				pageCount = ctx.PageCount
 				m := pdfcpu.IntSet{}
@@ -108,7 +109,7 @@ L:
 			}
 			// now write to file
 			if err == nil {
-				nn := strings.TrimSuffix(path, ".pdf") + "_wm.pdf"
+				nn := strings.TrimSuffix(path, filepath.Ext(path)) + "_wm.pdf"
 				var nf *os.File
 				nf, err = os.Create(nn)
 				if err == nil {
